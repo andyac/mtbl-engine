@@ -1,10 +1,12 @@
-args= -O3 -std=c99
-all: mkmap
+CC = g++
+EX = mtbl 
+CFLAGS = -O3 -ggdb -c -Wall
+SRC = main.cpp Labyrinth.cpp
+OBJ = $(SRC:.c=.o) 
 
-mkmap: mkmap.c mkmap.h
-	gcc $(args) -o mkmap mkmap.c
-
+$(EX): $(OBJ) 
+	$(CC) -o $(EX) $(OBJ)
+.c.o:
+	$(CC) $(CFLAGS) $< -o $@
 clean:
-	rm -f mkmap
-
-
+	rm -f *.o $(EX)
